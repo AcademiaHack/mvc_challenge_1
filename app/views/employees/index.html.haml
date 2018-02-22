@@ -24,7 +24,7 @@
               %td
                 = link_to department_employees_path(id: employee), class: 'btn btn-outline-primary btn-sm mx-1' do
                   = icon 'fas', 'pencil-alt'
-                = link_to employee_path(employee), method: :delete, data: { confirm: 'Desea eliminar este empleado?' }, class: 'btn btn-outline-danger btn-sm mx-1' do
+                = link_to department_employee_path(@department, employee), method: :delete, data: { confirm: 'Desea eliminar este empleado?' }, class: 'btn btn-outline-danger btn-sm mx-1' do
                   = icon 'fas', 'trash'
     %h2
       - if @employee.persisted?
@@ -34,4 +34,4 @@
       = link_to @department.name.downcase, departments_path(id: @department)
     .card
       .card-body
-        = render partial: 'form', locals: { form_args: @employee.persisted? ? @employee : [@department, @employee]  }
+        = render 'form'

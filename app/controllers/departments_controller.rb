@@ -5,7 +5,7 @@ class DepartmentsController < ApplicationController
   # GET /departments
   # GET /departments.json
   def index
-    @departments = Department.all
+    @departments = current_company.departments
     @department = Department.find_or_initialize_by(id: params[:id])
   end
 

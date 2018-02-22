@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180222015800) do
+ActiveRecord::Schema.define(version: 20180222015500) do
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
@@ -29,15 +29,6 @@ ActiveRecord::Schema.define(version: 20180222015800) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_companies_on_email", unique: true
     t.index ["reset_password_token"], name: "index_companies_on_reset_password_token", unique: true
-  end
-
-  create_table "department_employees", force: :cascade do |t|
-    t.integer "department_id"
-    t.integer "employee_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["department_id"], name: "index_department_employees_on_department_id"
-    t.index ["employee_id"], name: "index_department_employees_on_employee_id"
   end
 
   create_table "departments", force: :cascade do |t|
@@ -59,8 +50,10 @@ ActiveRecord::Schema.define(version: 20180222015800) do
     t.string "phone_mobile"
     t.string "phone_emergency"
     t.string "email_personal"
+    t.integer "department_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["department_id"], name: "index_employees_on_department_id"
   end
 
 end

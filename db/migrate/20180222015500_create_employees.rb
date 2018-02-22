@@ -11,6 +11,7 @@ class CreateEmployees < ActiveRecord::Migration[5.1]
       t.string :phone_mobile
       t.string :phone_emergency
       t.string :email_personal
+      t.references :department, foreign_key: true
 
       t.timestamps
     end

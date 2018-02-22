@@ -11,7 +11,7 @@
             %th Cedula
             %th Nombre
             %th Celular
-            %th Correo electronico
+            %th Departamento
             %th Acciones
         %tbody
           - @employees.each do |employee|
@@ -19,9 +19,9 @@
               %td= employee.identity
               %td= employee.full_name
               %td= employee.phone_mobile
-              %td= employee.email_personal          
+              %td= employee.department.name
               %td
-                = link_to edit_employee_path(employee), class: 'btn btn-outline-primary btn-sm mx-1' do
+                = link_to department_employees_path(employee.department, id: employee.id), class: 'btn btn-outline-primary btn-sm mx-1' do
                   = icon 'fas', 'pencil-alt'
-                = link_to employee_path(employee), method: :delete, data: { confirm: 'Desea eliminar este empleado?' }, class: 'btn btn-outline-danger btn-sm mx-1' do
+                = link_to department_employee_path(employee.department, employee), method: :delete, data: { confirm: 'Desea eliminar este empleado?' }, class: 'btn btn-outline-danger btn-sm mx-1' do
                   = icon 'fas', 'trash'

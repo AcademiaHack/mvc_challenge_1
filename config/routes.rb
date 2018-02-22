@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :departments, except: :show do
-    resources :employees, shallow: true
+    resources :employees
   end
   
   get 'search' => 'employees#search', as: 'employees_search'

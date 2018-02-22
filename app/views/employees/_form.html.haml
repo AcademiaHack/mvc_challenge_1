@@ -26,18 +26,13 @@
       .form-group
         .form-group
           %b
-            = f.label 'Correo electronico*'
-          = f.text_field :email_personal, class: 'form-control', required: true
+            = f.label 'Celular*'
+          = f.text_field :phone_mobile, class: 'form-control', required: true
   .row
-    .col-6
+    .col-12
       .form-group
-        %b
-          = f.label 'Celular*'
-        = f.text_field :phone_mobile, class: 'form-control', required: true
-    .col-6
-      .form-group
-        = f.label 'Telefono fijo'
-        = f.text_field :phone_home, class: 'form-control'
+        = f.label 'Correo electronico'
+        = f.text_field :email_personal, class: 'form-control'
   .row
     .col-6
       .form-group
@@ -45,9 +40,18 @@
         = f.text_field :bank, class: 'form-control'
     .col-6
       .form-group
+        = f.label 'Tipo de cuenta'
+        = f.text_field :account_type, class: 'form-control'
+  .row
+    .col-12
+      .form-group
         = f.label 'Nro de cuenta'
         = f.text_field :account_number, class: 'form-control'
   .row
+    .col-6
+      .form-group
+        = f.label 'Telefono fijo'
+        = f.text_field :phone_home, class: 'form-control'
     .col-6
       .form-group
         = f.label 'Telefono emergencia'

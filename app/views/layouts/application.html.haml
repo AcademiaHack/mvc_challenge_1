@@ -1,6 +1,7 @@
 !!!
 %html
   %head
+    %meta{ name: "turbolinks-cache-control", content: "no-cache" }
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title TestMvcChallenge1
     = csrf_meta_tags
@@ -10,5 +11,5 @@
     - if current_company
       = render 'layouts/top_navbar'
     = render 'layouts/notifications'
-    .container
+    .container.p-5
       = yield

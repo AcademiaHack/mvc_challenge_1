@@ -1,6 +1,12 @@
 .row.justify-content-center
   .col-8
-    %h2 Departamentos
+    .row
+      .col-10
+        %h2 
+          Departamentos
+          - if @department.persisted?
+            = link_to departments_path, class: 'btn btn-sm btn-outline-success font-weight-bold plus-icon' do
+              = icon 'fas', 'plus'
     .card
       - if @departments.empty?
         .row.justify-content-center.my-3
@@ -32,7 +38,8 @@
                     = icon 'fas', 'pencil-alt'
                   = link_to department, method: :delete, data: { confirm: 'Desea eliminar este departamento?' }, class: 'btn btn-outline-danger btn-sm mx-1' do
                     = icon 'fas', 'trash'
-    %h2.my-4
+  .col-4
+    %h2
       - if @department.persisted?
         = link_to departments_path do
           = icon 'fas', 'angle-left'

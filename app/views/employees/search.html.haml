@@ -5,23 +5,35 @@
         = icon 'fas', 'angle-left'
       Resultado de la busqueda
     .card
-      %table.table
-        %thead
-          %tr
-            %th Cedula
-            %th Nombre
-            %th Celular
-            %th Departamento
-            %th Acciones
-        %tbody
-          - @employees.each do |employee|
+      - if @employees.empty?
+        .row.justify-content-center.my-3
+          .col-12
+          = image_tag 'search', class: 'empty-state img-fluid'
+        .row.justify-content-center
+          .col-12
+            %h6.text-center No pudimos conseguir ningún empleado que coincida con los criterios de busqueda.
+            .notice.text-center.my-3
+              %small 
+                Puedes modificar los parametros de la busqueda o
+                = link_to 'ir al listado de departamentos', root_path
+      - else
+        %table.table
+          %thead
             %tr
-              %td= employee.identity
-              %td= employee.full_name
-              %td= employee.phone_mobile
-              %td= employee.department.name
-              %td
-                = link_to department_employees_path(employee.department, id: employee.id), class: 'btn btn-outline-primary btn-sm mx-1' do
-                  = icon 'fas', 'pencil-alt'
-                = link_to department_employee_path(employee.department, employee), method: :delete, data: { confirm: 'Desea eliminar este empleado?' }, class: 'btn btn-outline-danger btn-sm mx-1' do
-                  = icon 'fas', 'trash'
+              %th Cedula
+              %th Nombre
+              %th Celular
+              %th Departamento
+              %th Acciones
+          %tbody
+            - @employees.each do |employee|
+              %tr
+                %td= employee.identity
+                %td= employee.full_name
+                %td= employee.phone_mobile
+                %td= employee.department.name
+                %td
+                  = link_to department_employees_path(employee.department, id: employee.id), class: 'btn btn-outline-primary btn-sm mx-1' do
+                    = icon 'fas', 'pencil-alt'
+                  = link_to department_employee_path(employee.department, employee), method: :delete, data: { confirm: 'Desea eliminar este empleado?' }, class: 'btn btn-outline-danger btn-sm mx-1' do
+                    = icon 'fas', 'trash'

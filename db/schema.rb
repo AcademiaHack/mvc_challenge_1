@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20180222015500) do
     t.string "middle_name"
     t.string "last_name"
     t.string "identity"
+    t.string "account_type"
     t.string "account_number"
     t.string "bank"
     t.string "phone_home"

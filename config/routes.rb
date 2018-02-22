@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   resources :departments, except: :show do
-    resources :employees
+    resources :employees, shallow: true
   end
   
+  get 'search' => 'employees#search', as: 'employees_search'
   
   devise_for :companies
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

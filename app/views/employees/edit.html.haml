@@ -1,7 +1,9 @@
-%h1 Editing employee
-
-= render 'form'
-
-= link_to 'Show', @employee
-\|
-= link_to 'Back', employees_path
+.row.justify-content-center
+  .col-8
+    %h2 
+      = link_to root_path do
+        = icon 'fas', 'angle-left'
+      Editando empleado
+    .card
+      .card-body
+        = render partial: 'form', locals: { form_args: @employee }

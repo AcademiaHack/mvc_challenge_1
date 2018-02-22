@@ -9,6 +9,10 @@ class EmployeesController < ApplicationController
     @employee = Employee.find_or_initialize_by(id: params[:id])
   end
 
+  def search
+    @employees = Employee.search(params[:keywords])
+  end
+
   # GET /employees/1
   # GET /employees/1.json
   def show
@@ -59,7 +63,7 @@ class EmployeesController < ApplicationController
   def destroy
     @employee.destroy
     respond_to do |format|
-      format.html { redirect_to employees_url, notice: 'El empleado fue eliminado exitosamente.' }
+      format.html { redirect_to department_employees_path, notice: 'El empleado fue eliminado exitosamente.' }
       format.json { head :no_content }
     end
   end

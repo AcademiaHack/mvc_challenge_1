@@ -6,27 +6,37 @@
       Empleados del departamento
       = link_to @department.name.downcase, departments_path(id: @department)  
     .card
-      %table.table
-        %thead
-          %tr
-            %th Cedula
-            %th Nombre
-            %th Celular
-            %th Correo electronico
-            %th Acciones
-        %tbody
-          - @department.employees.each do |employee|
+      - if @department.employees.empty?
+        .row.justify-content-center.my-3
+          .col-12
+          = image_tag 'team', class: 'empty-state'
+        .row.justify-content-center
+          .col-12
+            %h5.text-center Aún no hay empleados.
+            .notice.text-center.my-3
+              %small Puedes crear tu primer empleado utilizando el siguiente formulario.
+      - else
+        %table.table
+          %thead
             %tr
-              %td= employee.identity
-              %td= employee.full_name
-              %td= employee.phone_mobile
-              %td= employee.email_personal          
-              %td
-                = link_to department_employees_path(id: employee), class: 'btn btn-outline-primary btn-sm mx-1' do
-                  = icon 'fas', 'pencil-alt'
-                = link_to department_employee_path(@department, employee), method: :delete, data: { confirm: 'Desea eliminar este empleado?' }, class: 'btn btn-outline-danger btn-sm mx-1' do
-                  = icon 'fas', 'trash'
-    %h2
+              %th Cedula
+              %th Nombre
+              %th Celular
+              %th Correo electronico
+              %th Acciones
+          %tbody
+            - @department.employees.each do |employee|
+              %tr
+                %td= employee.identity
+                %td= employee.full_name
+                %td= employee.phone_mobile
+                %td= employee.email_personal          
+                %td
+                  = link_to department_employees_path(id: employee), class: 'btn btn-outline-primary btn-sm mx-1' do
+                    = icon 'fas', 'pencil-alt'
+                  = link_to department_employee_path(@department, employee), method: :delete, data: { confirm: 'Desea eliminar este empleado?' }, class: 'btn btn-outline-danger btn-sm mx-1' do
+                    = icon 'fas', 'trash'
+    %h2.my-4
       - if @employee.persisted?
         = link_to department_employees_path(@department) do
           = icon 'fas', 'angle-left'

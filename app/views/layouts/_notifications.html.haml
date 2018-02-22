@@ -1,0 +1,14 @@
+- if notice || alert
+  .container-fluid
+    .row.justify-content-center
+      .col-6.text-center
+        - if notice
+          .alert.alert-success.alert-dismissible.fade.show
+            = notice
+            %button.close{ type: 'button', "data-dismiss": "alert"}
+              %span{ "aria-hidden": "true" } &times;
+        - if alert
+          .alert.alert-danger.alert-dismissible.fade.show
+            = alert
+            %button.close{ type: 'button', "data-dismiss": "alert"}
+              %span{ "aria-hidden": "true" } &times;

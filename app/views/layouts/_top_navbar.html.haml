@@ -1,0 +1,8 @@
+%nav.navbar.navbar-light.bg-light.justify-content-between
+  .col-10
+    %form.form-inline
+      %input.flex-2.form-control.mr-2{placeholder: "Busqueda de empleados", type: "search"}
+      %button.btn.btn-primary.my-2{:type => "submit"}
+        = icon :fas, :search
+  .col-2.text-right
+    = link_to 'Cerrar sesión', destroy_company_session_path, method: :delete, class: 'btn btn-danger'

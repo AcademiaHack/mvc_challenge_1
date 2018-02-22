@@ -1,0 +1,36 @@
+%p#notice= notice
+
+%p
+  %b First name:
+  = @employee.first_name
+%p
+  %b Middle name:
+  = @employee.middle_name
+%p
+  %b Last name:
+  = @employee.last_name
+%p
+  %b Identity:
+  = @employee.identity
+%p
+  %b Account number:
+  = @employee.account_number
+%p
+  %b Bank:
+  = @employee.bank
+%p
+  %b Phone home:
+  = @employee.phone_home
+%p
+  %b Phone mobile:
+  = @employee.phone_mobile
+%p
+  %b Phone emergency:
+  = @employee.phone_emergency
+%p
+  %b Email personal:
+  = @employee.email_personal
+
+= link_to 'Edit', edit_employee_path(@employee)
+\|
+= link_to 'Back', employees_path

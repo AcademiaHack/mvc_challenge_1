@@ -1,0 +1,35 @@
+%h1 Listing employees
+
+%table
+  %thead
+    %tr
+      %th First name
+      %th Middle name
+      %th Last name
+      %th Identity
+      %th Account number
+      %th Bank
+      %th Phone home
+      %th Phone mobile
+      %th Phone emergency
+      %th Email personal
+      %th
+      %th
+      %th
+
+  %tbody
+    - @employees.each do |employee|
+      %tr
+        %td= employee.first_name
+        %td= employee.middle_name
+        %td= employee.last_name
+        %td= employee.identity
+        %td= employee.account_number
+        %td= employee.bank
+        %td= employee.phone_home
+        %td= employee.phone_mobile
+        %td= employee.phone_emergency
+        %td= employee.email_personal
+        %td= link_to 'Show', employee
+        %td= link_to 'Edit', edit_employee_path(employee)
+        %td= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' }

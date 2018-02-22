@@ -16,11 +16,16 @@
                 = link_to department.name, department_employees_path(department)
               %td.text-center= department.employees.length
               %td.text-center
+                = link_to department_employees_path(department), class: 'btn btn-primary btn-sm mx-1' do
+                  = icon 'fas', 'users'
                 = link_to departments_path(id: department), class: 'btn btn-outline-primary btn-sm mx-1' do
                   = icon 'fas', 'pencil-alt'
                 = link_to department, method: :delete, data: { confirm: 'Desea eliminar este departamento?' }, class: 'btn btn-outline-danger btn-sm mx-1' do
                   = icon 'fas', 'trash'
     %h2
+      - if @department.persisted?
+        = link_to departments_path do
+          = icon 'fas', 'angle-left'
       = "#{ @department.persisted? ? 'Editar' : 'Nuevo'  } departamento"
     .card
       .card-body

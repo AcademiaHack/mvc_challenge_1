@@ -5,7 +5,8 @@ class EmployeesController < ApplicationController
   # GET /employees
   # GET /employees.json
   def index
-    @employees = Employee.all
+    @department = Department.find(params[:department_id])
+    @employee = Employee.find_or_initialize_by(id: params[:id])
   end
 
   # GET /employees/1
@@ -29,7 +30,8 @@ class EmployeesController < ApplicationController
 
     respond_to do |format|
       if @employee.save
-        format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
+        DepartmentEmployee.create(employee_id: @employee.id, department_id: params[:department_id])
+        format.html { redirect_to department_employees_path, notice: 'El empleado fue creado exitosamente' }
         format.json { render :show, status: :created, location: @employee }
       else
         format.html { render :new }
@@ -43,7 +45,7 @@ class EmployeesController < ApplicationController
   def update
     respond_to do |format|
       if @employee.update(employee_params)
-        format.html { redirect_to @employee, notice: 'Employee was successfully updated.' }
+        format.html { redirect_to department_employees_path, notice: 'El empleado fue actualizado exitosamente.' }
         format.json { render :show, status: :ok, location: @employee }
       else
         format.html { render :edit }
@@ -57,7 +59,7 @@ class EmployeesController < ApplicationController
   def destroy
     @employee.destroy
     respond_to do |format|
-      format.html { redirect_to employees_url, notice: 'Employee was successfully destroyed.' }
+      format.html { redirect_to employees_url, notice: 'El empleado fue eliminado exitosamente.' }
       format.json { head :no_content }
     end
   end

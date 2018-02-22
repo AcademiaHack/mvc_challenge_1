@@ -1,35 +1,38 @@
-%h1 Listing employees
+.row.justify-content-center
+  .col-8
+    %h2
+      = link_to departments_path(id: @department) do
+        = icon 'fas', 'angle-left'
+      Empleados del departamento
+      = link_to @department.name.downcase, departments_path(id: @department)  
+    .card
+      %table.table
+        %thead
+          %tr
+            %th Cedula
+            %th Nombre
+            %th Celular
+            %th Correo electronico
+            %th Acciones
 
-%table
-  %thead
-    %tr
-      %th First name
-      %th Middle name
-      %th Last name
-      %th Identity
-      %th Account number
-      %th Bank
-      %th Phone home
-      %th Phone mobile
-      %th Phone emergency
-      %th Email personal
-      %th
-      %th
-      %th
-
-  %tbody
-    - @employees.each do |employee|
-      %tr
-        %td= employee.first_name
-        %td= employee.middle_name
-        %td= employee.last_name
-        %td= employee.identity
-        %td= employee.account_number
-        %td= employee.bank
-        %td= employee.phone_home
-        %td= employee.phone_mobile
-        %td= employee.phone_emergency
-        %td= employee.email_personal
-        %td= link_to 'Show', employee
-        %td= link_to 'Edit', edit_employee_path(employee)
-        %td= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' }
+        %tbody
+          - @department.employees.each do |employee|
+            %tr
+              %td= employee.identity
+              %td= employee.full_name
+              %td= employee.phone_mobile
+              %td= employee.email_personal          
+              %td
+                = link_to department_employees_path(id: employee), class: 'btn btn-outline-primary btn-sm mx-1' do
+                  = icon 'fas', 'pencil-alt'
+                = link_to department_employee_path(@department, employee), method: :delete, data: { confirm: 'Desea eliminar este empleado?' }, class: 'btn btn-outline-danger btn-sm mx-1' do
+                  = icon 'fas', 'trash'
+    %h2
+      - if @employee.persisted?
+        = link_to department_employees_path(@department) do
+          = icon 'fas', 'angle-left'
+      = "#{ @employee.persisted? ? 'Editar' : 'Nuevo'  } empleado del departamento"
+      = link_to @department.name.downcase, departments_path(id: @department)
+    .card
+      .card-body
+        = render 'form'

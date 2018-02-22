@@ -1,40 +1,54 @@
-= form_for @employee do |f|
+= form_for [@department, @employee] do |f|
   - if @employee.errors.any?
     #error_explanation
       %h2= "#{pluralize(@employee.errors.count, "error")} prohibited this employee from being saved:"
       %ul
         - @employee.errors.full_messages.each do |message|
           %li= message
-
-  .field
-    = f.label :first_name
-    = f.text_field :first_name
-  .field
-    = f.label :middle_name
-    = f.text_field :middle_name
-  .field
-    = f.label :last_name
-    = f.text_field :last_name
-  .field
-    = f.label :identity
-    = f.text_field :identity
-  .field
-    = f.label :account_number
-    = f.text_field :account_number
-  .field
-    = f.label :bank
-    = f.text_field :bank
-  .field
-    = f.label :phone_home
-    = f.text_field :phone_home
-  .field
-    = f.label :phone_mobile
-    = f.text_field :phone_mobile
-  .field
-    = f.label :phone_emergency
-    = f.text_field :phone_emergency
-  .field
-    = f.label :email_personal
-    = f.text_field :email_personal
+  .row
+    .col-6
+      .form-group
+        = f.label 'Primer Nombre'
+        = f.text_field :first_name, class: 'form-control'
+    .col-6
+      .form-group
+        = f.label 'Segundo Nombre'
+        = f.text_field :middle_name, class: 'form-control'
+  .row
+    .col-6
+      .form-group
+        = f.label 'Apellido'
+        = f.text_field :last_name, class: 'form-control'
+    .col-6
+      .form-group
+        = f.label 'Cedula'
+        = f.text_field :identity, class: 'form-control'
+  .row
+    .col-6
+      .form-group
+        = f.label 'Banco'
+        = f.text_field :bank, class: 'form-control'
+    .col-6
+      .form-group
+        = f.label 'Nro de cuenta'
+        = f.text_field :account_number, class: 'form-control'
+  .row
+    .col-6
+      .form-group
+        = f.label 'Celular'
+        = f.text_field :phone_mobile, class: 'form-control'
+    .col-6
+      .form-group
+        = f.label 'Telefono fijo'
+        = f.text_field :phone_home, class: 'form-control'
+  .row
+    .col-6
+      .form-group
+        = f.label 'Telefono emergencia'
+        = f.text_field :phone_emergency, class: 'form-control'
+    .col-6
+      .form-group
+        = f.label 'Email personal'
+        = f.text_field :email_personal, class: 'form-control'
   .actions
-    = f.submit 'Save'
+    = f.submit 'Guardar', class: 'btn btn-primary btn-block'
